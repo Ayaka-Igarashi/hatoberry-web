@@ -5,13 +5,13 @@ import styles from "./index.css?inline";
 export default component$(() => {
   useStylesScoped$(styles);
 
-  const messages = useSignal([]);
+  const messages = useSignal<string[]>([]);
   const newMessage = useSignal("");
 
   const addMessage = $(() => {
     if (newMessage.value==="")
       return
-    
+
     messages.value = [...messages.value, newMessage.value];
     newMessage.value = "";
   });
