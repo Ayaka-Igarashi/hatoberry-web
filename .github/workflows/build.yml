@@ -50,5 +50,5 @@ jobs:
       # Nginx reload（設定変わらないなら省略可）
       - name: Reload Nginx
         run: |
-          ssh ${{ vars.SSH_USER }@${{ vars.HATOBERRY_TAILSCALE_IP }} \
+          ssh ${{ vars.SSH_USER }}@${{ vars.HATOBERRY_TAILSCALE_IP }} \
             "sudo systemctl reload nginx"
