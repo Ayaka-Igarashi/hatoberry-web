@@ -47,8 +47,8 @@ jobs:
           rsync -av --delete dist/ \
             ${{ vars.SSH_USER }}@${{ vars.HATOBERRY_TAILSCALE_IP }}:${{ vars.DEPLOY_DIR }}/dist/
 
-      # Nginx reload（設定変わらないなら省略可）
-      - name: Reload Nginx
-        run: |
-          ssh ${{ vars.SSH_USER }}@${{ vars.HATOBERRY_TAILSCALE_IP }} \
-            "sudo systemctl reload nginx"
+      # # Nginx reload（設定変わらないなら省略可）
+      # - name: Reload Nginx
+      #   run: |
+      #     ssh ${{ vars.SSH_USER }}@${{ vars.HATOBERRY_TAILSCALE_IP }} \
+      #       "sudo systemctl reload nginx"
