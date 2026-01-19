@@ -17,6 +17,7 @@ export const metadata: Metadata = {
   description: "HatoBerry",
   icons: {
     icon: '/favicon.png',
+    apple: '/apple-touch-icon.png',
   },
 };
 
