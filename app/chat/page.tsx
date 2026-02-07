@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useCallback, useRef } from "react";
 import { api } from "@/lib/api";
-import type { Message } from "@/lib/api/chat";
+import type { Message } from "@/lib/types";
 import "./style.css";
 
 const normalizeMessage = (message: Message): Message => ({
@@ -77,7 +77,7 @@ export default function ChatPage() {
   useEffect(() => {
     const loadMessages = async () => {
       try {
-        const data = await api.chat.getAllMessages();
+        const data = await api.message.getAll();
         setMessages(data.map(normalizeMessage));
       } catch (error) {
         console.error("Failed to load messages:", error);
@@ -117,7 +117,7 @@ export default function ChatPage() {
     
     setLoading(true);
     try {
-      const newMsg = await api.chat.createMessage({
+      const newMsg = await api.message.create({
         content: newMessage,
         postedAt: new Date(),
       });

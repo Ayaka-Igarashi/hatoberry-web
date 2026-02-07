@@ -1,8 +1,10 @@
+import { config } from '@/lib/config';
+
 class ApiClient {
   private baseURL: string;
   
-  constructor(baseURL: string = process.env.NEXT_PUBLIC_API_BASE_URL || 'http://hatoberry/api') {
-    this.baseURL = baseURL;
+  constructor() {
+    this.baseURL = config.apiBaseUrl;
   }
 
   private async request<T>(

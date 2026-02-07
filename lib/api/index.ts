@@ -1,7 +1,7 @@
-export * from './chat';
+export * from './message';
 
-import { chatApi } from './chat';
+import { messageApi } from './message';
 
 export const api = {
-  chat: chatApi,
+  message: messageApi,
 };
