@@ -7,6 +7,6 @@ export interface Message {
 }
 
 export const chatApi = {
-  getAllMessages: () => apiClient.get<Message[]>('/chat/messages'),
-  createMessage: (data: Omit<Message, 'id'>) => apiClient.post<Message>('/chat/messages', data),
+  getAllMessages: () => apiClient.get<Message[]>('/messages'),
+  createMessage: (data: Omit<Message, 'id'>) => apiClient.post<Message>('/messages', data),
 };

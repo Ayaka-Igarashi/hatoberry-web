@@ -41,7 +41,7 @@ const resolveWsUrl = () => {
       const wsProtocol = apiUrl.protocol === "https:" ? "wss:" : "ws:";
       const apiPath = apiUrl.pathname.replace(/\/?api\/?$/, "");
       const basePath = apiPath === "/" ? "" : apiPath;
-      return `${wsProtocol}//${apiUrl.host}${basePath}/ws/chat`;
+      return `${wsProtocol}//${apiUrl.host}${basePath}/ws`;
     } catch {
       return null;
     }
@@ -50,7 +50,7 @@ const resolveWsUrl = () => {
   if (typeof window === "undefined") return null;
 
   const wsProtocol = window.location.protocol === "https:" ? "wss:" : "ws:";
-  return `${wsProtocol}//${window.location.host}/ws/chat`;
+  return `${wsProtocol}//${window.location.host}/ws`;
 };
 
 export default function ChatPage() {
