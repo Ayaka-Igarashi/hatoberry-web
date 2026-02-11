@@ -2,7 +2,7 @@
 import { defineConfig, devices } from '@playwright/test';
 
 export default defineConfig({
-  testDir: './test/e2e',
+  testDir: './tests/e2e',
   outputDir: './test-results/e2e/artifact',
   reporter: [['html', { outputFolder: './test-results/e2e/report' }]],
 
