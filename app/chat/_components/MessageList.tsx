@@ -1,25 +1,18 @@
-import { useEffect, useRef } from "react";
 import type { Message } from "@/lib/types";
+import s from "./MessageList.module.css";
+import cx from "classnames";
 
 interface MessageListProps {
+  className?: string;
   messages: Message[];
-}
+};
 
-export function MessageList({ messages }: MessageListProps) {
-  const messagesEndRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
-  }, [messages]);
-
-  return (
-    <div className="messages">
-      {messages.map((msg) => (
-        <div key={msg.id} className="message">
-          {msg.content}
-        </div>
-      ))}
-      <div ref={messagesEndRef} />
-    </div>
-  );
-}
+export const MessageList: React.FC<MessageListProps> = ({ className, messages }) => (
+  <div className={cx(s.root, className)}>
+    {messages.map((msg) => (
+      <div key={msg.id} className={s.message}>
+        {msg.content}
+      </div>
+    ))}
+  </div>
+);

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useCallback, useRef } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useMessageStore } from '@/lib/stores/messageStore';
 import { useWebSocket } from '@/lib/hooks/useWebSocket';
 import { normalizeMessage, isMessage } from '@/lib/utils/message';
@@ -8,13 +8,20 @@ import { MessageList } from "./_components/MessageList";
 import { MessageInput } from "./_components/MessageInput";
 import "./style.css";
 
-export default function ChatPage() {
+const ChatPage = () => {
   const { messages, loading, addMessage, upsertMessage, loadMessages } = useMessageStore();
+
   const [inputText, setInputText] = useState("");
+
+  const messagesEndRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     loadMessages();
   }, [loadMessages]);
+
+  useEffect(() => {
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  }, [messages]);
 
   useWebSocket({
     onMessage: (payload: unknown) => {
@@ -30,7 +37,8 @@ export default function ChatPage() {
 
   return (
     <div className="root">
-      <MessageList messages={messages} />
+      <MessageList className="messageList" messages={messages} />
+      <div ref={messagesEndRef}>a</div>
       <MessageInput
         value={inputText}
         loading={loading}
@@ -43,3 +51,5 @@ export default function ChatPage() {
     </div>
   );
 }
+
+export default ChatPage;
