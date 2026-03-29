@@ -22,12 +22,22 @@ const summaryMessages = {
     },
 
     // 実行関数: エージェントがツールを呼び出すとこの関数が実行される
-    async execute({ startDate, endDate }) {
+    async execute({ startDate, endDate }: { startDate: string; endDate: string }) {
       const response = await fetch("/api/messages", {
         method: "GET",
       });
       const data = await response.json();
-      return { success: true, messages:data };
+      // startDate, endDateでフィルタリング
+      const start = new Date(startDate);
+      const end = new Date(endDate);
+      const filtered = Array.isArray(data)
+        ? data.filter((msg) => {
+            // msg.postedAtがDate型でなければ変換
+            const date = msg.postedAt instanceof Date ? msg.postedAt : new Date(msg.postedAt);
+            return date >= start && date <= end;
+          })
+        : [];
+      return { success: true, messages: filtered };
     }
 }
 
