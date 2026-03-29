@@ -25,8 +25,8 @@ export const useMessageStore = create<MessageStore>((set) => ({
         const prompt = extractAiPrompt(trimmed);
         if (!prompt) return;
 
-        // ユーザーの質問も通常メッセージとして保存（@AIプレフィックスは除去）
-        await api.message.create({ content: prompt });
+        // ユーザーの質問は @AI を含めたまま保存
+        await api.message.create({ content: trimmed });
 
         const aiText = await fetchAiResponseText(prompt);
         if (aiText) {
