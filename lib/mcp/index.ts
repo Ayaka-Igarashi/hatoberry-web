@@ -1,6 +1,6 @@
 import summaryMessages from "./summaryMessages"
 
 const mcpTools = [ summaryMessages ]
-if (navigator.modelContext) {
+if (typeof navigator !== "undefined" && navigator.modelContext) {
   navigator.modelContext.registerTool(mcpTools)
 }
