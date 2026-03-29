@@ -1,6 +1,9 @@
-import summaryMessages from "./summaryMessages"
+import summaryMessages from "./summaryMessages";
 
-const mcpTools = [ summaryMessages ]
+const mcpTools = [summaryMessages];
+
 if (typeof navigator !== "undefined" && navigator.modelContext) {
-  navigator.modelContext.registerTool(mcpTools)
+  mcpTools.forEach(tool => {
+    navigator.modelContext.registerTool(tool);
+  });
 }
