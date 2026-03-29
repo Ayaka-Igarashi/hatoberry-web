@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
+import "@/lib/mcp";
 import { useMessageStore } from '@/lib/stores/messageStore';
 import { useWebSocket } from '@/lib/hooks/useWebSocket';
 import { normalizeMessage, isMessage } from '@/lib/utils/message';
@@ -38,7 +39,7 @@ const ChatPage = () => {
   return (
     <div className="root">
       <MessageList className="messageList" messages={messages} />
-      <div ref={messagesEndRef}>a</div>
+      <div ref={messagesEndRef}></div>
       <MessageInput
         value={inputText}
         loading={loading}
