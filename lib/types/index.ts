@@ -1,7 +1,11 @@
 // modelContext型拡張: Chatなどでnavigator.modelContextを使うため
 declare global {
+  interface ModelContext {
+    registerTool: (tool: unknown) => void;
+  }
+
   interface Navigator {
-    modelContext?: any; // 必要に応じて型を修正
+    modelContext?: ModelContext;
   }
 }
 
